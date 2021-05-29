@@ -1,26 +1,23 @@
 <script>
- let name ="dobby";
- let lastname="";
- let firstname="";
-
- //reactive variable we use dollar sign and name of that reactive varialble
-
- $: fullname =`${lastname} ${firstname}`;
- //some time you may use also reactive statement and it will check every time either of the variable change
- 
- $: {
-	 //this is to mean that if any of the first and lastname change the this code block will run
-	 console.log(fullname);
-	 console.log(name);
- }
-
+let people = [
+    { name: 'yoshi', beltColour: 'black', age: 25, id: 1 },
+    { name: 'mario', beltColour: 'orange', age: 45, id: 2 },
+    { name: 'luigi', beltColour: 'brown', age: 35, id: 3 }
+  ];
 
 </script>
 
 <main>
-	<p>{fullname}</p>
-	<input type="text" bind:value={firstname}>
-	<input type="text" bind:value={lastname}>
+	{#each people as person (person.id)}
+     <div style="background:{person.beltColour}">
+		 <p>{person.name}</p>
+		 <p>{person.age}</p>
+
+	 </div>
+
+	{:else}
+		<p>no people are provided ....</p>
+	{/each}
 </main>
 
 
